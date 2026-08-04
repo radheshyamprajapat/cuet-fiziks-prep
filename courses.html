@@ -1,45 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Courses | CUET Fiziks Prep</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fb;
+}
+
+.hero-course{
+    background:linear-gradient(135deg,#0b57d0,#1d4ed8);
+    color:white;
+    text-align:center;
+    padding:60px 20px;
+}
+
+.hero-course h1{
+    font-size:48px;
+    margin-bottom:10px;
+}
+
+.hero-course p{
+    font-size:20px;
+}
+
+.course-container{
+    max-width:1200px;
+    margin:50px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+    padding:0 20px;
+}
+
+.course-card{
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+
+    transition:.3s;
+
+}
+
+.course-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.course-card img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+.course-content{
+
+    padding:20px;
+
+}
+
+.course-content h3{
+
+    margin:0;
+
+    color:#0b57d0;
+
+}
+
+.course-content p{
+
+    color:#666;
+
+    line-height:1.6;
+
+}
+
+.price{
+
+    font-size:28px;
+
+    color:#e53935;
+
+    font-weight:bold;
+
+    margin:15px 0;
+
+}
+
+.btn{
+
+display:block;
+
+text-align:center;
+
+background:#0b57d0;
+
+color:white;
+
+padding:14px;
+
+text-decoration:none;
+
+border-radius:8px;
+
+font-weight:bold;
+
+}
+
+.btn:hover{
+
+background:#0845a3;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container">
+
+<div class="logo">
+
+<img src="images/logo.png" width="60">
+
+<h2>CUET Fiziks Prep</h2>
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="courses.html">Courses</a>
+
+<a href="notes.html">Notes</a>
+
+<a href="pyqs.html">PYQs</a>
+
+<a href="about.html">About</a>
+
+<a href="contact.html">Contact</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero-course">
+
+<h1>Premium Courses</h1>
+
+<p>Structured Courses with Notes, Tests & Support</p>
+
+</section>
+
 <section class="course-container">
 
 <div class="course-card">
-    <img src="images/demo.jpg" alt="Demo Lecture">
 
-    <h3>Demo Lecture</h3>
+<img src="images/cuet-course.jpg">
 
-    <a href="https://youtube.com/playlist?list=YOUR_PLAYLIST" class="btn1">
-        View Content
-    </a>
+<div class="course-content">
 
-    <a href="demo.html" class="btn2">
-        View Details
-    </a>
+<h3>CUET UG Physics Complete Batch</h3>
+
+<p>
+
+✔ Complete Syllabus<br>
+
+✔ Handwritten Notes<br>
+
+✔ PYQs<br>
+
+✔ Mock Tests
+
+</p>
+
+<div class="price">₹999</div>
+
+<a href="cuet-ug.html" class="btn">
+
+Enroll Now
+
+</a>
+
+</div>
+
 </div>
 
 <div class="course-card">
-    <img src="images/net.jpg" alt="CSIR NET">
 
-    <h3>CSIR NET | GATE FREE CONTENT</h3>
+<img src="images/pg-course.jpg">
 
-    <a href="https://youtube.com/playlist?list=YOUR_PLAYLIST" class="btn1">
-        View Content
-    </a>
+<div class="course-content">
 
-    <a href="net.html" class="btn2">
-        View Details
-    </a>
+<h3>CUET PG Physics</h3>
+
+<p>
+
+✔ Concept Classes<br>
+
+✔ Practice Sheets<br>
+
+✔ PYQs
+
+</p>
+
+<div class="price">₹1499</div>
+
+<a href="cuet-pg.html" class="btn">
+
+Enroll Now
+
+</a>
+
+</div>
+
 </div>
 
 <div class="course-card">
-    <img src="images/pgt.jpg" alt="PGT">
 
-    <h3>PGT Physics FREE Course</h3>
+<img src="images/net-course.jpg">
 
-    <a href="https://youtube.com/playlist?list=YOUR_PLAYLIST" class="btn1">
-        View Content
-    </a>
+<div class="course-content">
 
-    <a href="pgt.html" class="btn2">
-        View Details
-    </a>
+<h3>CSIR NET Physics</h3>
+
+<p>
+
+✔ Quantum<br>
+
+✔ Classical<br>
+
+✔ Mathematical Physics
+
+</p>
+
+<div class="price">₹2499</div>
+
+<a href="net-course.html" class="btn">
+
+Enroll Now
+
+</a>
+
+</div>
+
 </div>
 
 </section>
+
+</body>
+
+</html>
