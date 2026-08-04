@@ -78,4 +78,53 @@ body{font-family:Arial,sans-serif;margin:0;background:#f4f7fb;color:#222}header{
 
 .course-btn:hover{
     background:#cc0000;
+} 
+
+.course-container{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+padding:40px;
+}
+
+.course-card{
+width:320px;
+background:#fff;
+border-radius:15px;
+padding:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.course-card img{
+width:100%;
+border-radius:10px;
+}
+
+.course-card h3{
+font-size:22px;
+margin:15px 0;
+}
+
+.btn1{
+display:block;
+background:#1565ff;
+color:white;
+text-align:center;
+padding:12px;
+margin-top:20px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.btn2{
+display:block;
+background:#eef4ff;
+color:#1565ff;
+text-align:center;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+text-decoration:none;
 }
