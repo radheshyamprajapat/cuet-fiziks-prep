@@ -1,30 +1,75 @@
+// =======================
+// CUET FIZIKS PREP
+// Electrostatics Mock Test
+// =======================
+
 const questions = [
 
 {
-image:"images/q1.png",
+question: `
+<p><b>Question 1</b></p>
+
+<p>
+Two point charges
+$+2\\,\\mu C$ and
+$+3\\,\\mu C$
+are placed
+$2\\,m$
+apart.
+The electrostatic force between them is:
+</p>
+`,
 
 options:[
-"5 × 10⁻⁶ N",
-"10 × 10⁻⁶ N",
-"15 × 10⁻⁶ N",
-"20 × 10⁻⁶ N"
+"$0.0135\\,N$",
+"$0.027\\,N$",
+"$0.0405\\,N$",
+"$0.054\\,N$"
 ],
 
-answer:1
+answer:0
 
 },
 
 {
-image:"images/q2.png",
+
+question:`
+<p><b>Question 2</b></p>
+
+<p>
+According to Coulomb's law, the electrostatic force is proportional to
+</p>
+`,
 
 options:[
-"2 C",
-"4 C",
-"6 C",
-"8 C"
+"$r$",
+"$1/r$",
+"$1/r^2$",
+"$r^2$"
 ],
 
 answer:2
+
+},
+
+{
+
+question:`
+<p><b>Question 3</b></p>
+
+<p>
+SI unit of electric field is
+</p>
+`,
+
+options:[
+"$N/C$",
+"$J/C$",
+"$C/N$",
+"$Volt$"
+],
+
+answer:0
 
 }
 
@@ -33,50 +78,52 @@ answer:2
 let currentQuestion = 0;
 let score = 0;
 
-const questionImage=document.getElementById("question-image");
-const questionNumber=document.getElementById("question-number");
-const options=document.getElementById("options");
-const result=document.getElementById("result");
-const nextBtn=document.getElementById("nextBtn");
+const questionNumber = document.getElementById("question-number");
+const questionBox = document.getElementById("question-box");
+const optionsBox = document.getElementById("options");
+const resultBox = document.getElementById("result");
+const nextBtn = document.getElementById("nextBtn");
 
 loadQuestion();
 
 function loadQuestion(){
 
-let q=questions[currentQuestion];
+let q = questions[currentQuestion];
 
-questionNumber.innerHTML=
+questionNumber.innerHTML =
 `Question ${currentQuestion+1} of ${questions.length}`;
 
-questionImage.src=q.image;
+questionBox.innerHTML = q.question;
 
-options.innerHTML="";
+optionsBox.innerHTML = "";
 
-result.innerHTML="";
+resultBox.innerHTML = "";
 
-nextBtn.style.display="none";
+nextBtn.style.display = "none";
 
 q.options.forEach((option,index)=>{
 
-let btn=document.createElement("button");
-
-btn.innerHTML=option;
+const btn = document.createElement("button");
 
 btn.className="option-btn";
 
-btn.onclick=()=>checkAnswer(index,btn);
+btn.innerHTML = option;
 
-options.appendChild(btn);
+btn.onclick = ()=>checkAnswer(index,btn);
+
+optionsBox.appendChild(btn);
 
 });
+
+MathJax.typesetPromise();
 
 }
 
 function checkAnswer(selected,button){
 
-let correct=questions[currentQuestion].answer;
+const correct = questions[currentQuestion].answer;
 
-let buttons=document.querySelectorAll(".option-btn");
+const buttons = document.querySelectorAll(".option-btn");
 
 buttons.forEach(btn=>btn.disabled=true);
 
@@ -84,17 +131,20 @@ if(selected===correct){
 
 button.classList.add("correct");
 
-result.innerHTML="✅ Correct!";
+resultBox.innerHTML =
+"✅ Correct Answer";
 
 score++;
 
-}else{
+}
+else{
 
 button.classList.add("wrong");
 
 buttons[correct].classList.add("correct");
 
-result.innerHTML="❌ Wrong!";
+resultBox.innerHTML =
+"❌ Wrong Answer";
 
 }
 
@@ -110,18 +160,27 @@ if(currentQuestion<questions.length){
 
 loadQuestion();
 
-}else{
+}
+else{
 
 document.querySelector(".quiz-container").innerHTML=`
+
 <h1>🎉 Test Completed</h1>
 
 <h2>Your Score</h2>
 
-<h1>${score}/${questions.length}</h1>
+<h1>${score} / ${questions.length}</h1>
 
-<a href="../mock-tests.html">Back to Mock Tests</a>
+<p>Thank you for attempting the test.</p>
+
+<a href="../mock-tests.html">
+<button class="option-btn">
+Back to Mock Tests
+</button>
+</a>
+
 `;
 
 }
 
-}
+};
