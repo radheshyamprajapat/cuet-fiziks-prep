@@ -1,65 +1,215 @@
-.quiz-container{
-max-width:800px;
-margin:40px auto;
-background:white;
-padding:25px;
-border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,.15);
+/* ==========================
+   CUET FIZIKS PREP
+   Mock Test CSS
+========================== */
+
+body{
+    margin:0;
+    padding:0;
+    background:#f4f7fc;
+    font-family:Arial,Helvetica,sans-serif;
 }
+
+/* Quiz Box */
+
+.quiz-container{
+
+    max-width:900px;
+
+    margin:40px auto;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+}
+
+/* Heading */
 
 .quiz-container h1{
-text-align:center;
-margin-bottom:20px;
-color:#003366;
+
+    text-align:center;
+
+    color:#003366;
+
+    margin-bottom:25px;
+
 }
 
-#question-image{
-width:100%;
-border:1px solid #ddd;
-margin:20px 0;
+/* Question Number */
+
+#question-number{
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:#0b63ce;
+
+    margin-bottom:15px;
+
 }
+
+/* Question */
+
+#question-box{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+    padding:20px;
+
+    background:#f9fbff;
+
+    border-left:5px solid #0b63ce;
+
+    border-radius:8px;
+
+}
+
+/* Option Buttons */
 
 .option-btn{
-display:block;
-width:100%;
-padding:15px;
-margin:10px 0;
-font-size:16px;
-cursor:pointer;
-border:none;
-border-radius:8px;
-background:#f3f3f3;
-transition:.3s;
+
+    width:100%;
+
+    display:block;
+
+    text-align:left;
+
+    margin:12px 0;
+
+    padding:15px 18px;
+
+    font-size:17px;
+
+    background:white;
+
+    border:2px solid #dcdcdc;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
 }
 
 .option-btn:hover{
-background:#0b63ce;
-color:white;
+
+    background:#0b63ce;
+
+    color:white;
+
+    border-color:#0b63ce;
+
 }
+
+/* Correct */
 
 .correct{
-background:green!important;
-color:white;
+
+    background:#28a745 !important;
+
+    color:white !important;
+
+    border-color:#28a745 !important;
+
 }
+
+/* Wrong */
 
 .wrong{
-background:red!important;
-color:white;
+
+    background:#dc3545 !important;
+
+    color:white !important;
+
+    border-color:#dc3545 !important;
+
 }
 
+/* Result */
+
 #result{
-font-size:20px;
-font-weight:bold;
-margin-top:20px;
+
+    text-align:center;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    margin-top:25px;
+
+}
+
+/* Next Button */
+
+#nextBtn{
+
+    display:none;
+
+    margin:30px auto 0;
+
+    padding:14px 28px;
+
+    background:#0b63ce;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}
+
+#nextBtn:hover{
+
+    background:#084ea7;
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.quiz-container{
+
+    margin:15px;
+
+    padding:20px;
+
+}
+
+#question-box{
+
+    font-size:18px;
+
+}
+
+.option-btn{
+
+    font-size:16px;
+
+    padding:14px;
+
 }
 
 #nextBtn{
-display:none;
-padding:12px 25px;
-background:#0b63ce;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
-margin-top:20px;
+
+    width:100%;
+
+}
+
 }
