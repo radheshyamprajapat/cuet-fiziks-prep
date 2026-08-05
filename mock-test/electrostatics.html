@@ -1,52 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Electrostatics Mock Test</title>
+
+<title>Electrostatics Mock Test | CUET Fiziks Prep</title>
 
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="style.css">
 
+<!-- MathJax for LaTeX -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 </head>
+
 <body>
 
+<!-- HEADER -->
+
 <header>
+
 <div class="container">
 
 <div class="logo">
+
 <img src="../images/logo.png" alt="Logo">
+
 <h2>CUET Fiziks Prep</h2>
+
 </div>
 
 <nav>
+
 <a href="../index.html">Home</a>
+
 <a href="../courses.html">Courses</a>
+
 <a href="../notes.html">Notes</a>
+
 <a href="../pyqs.html">PYQs</a>
+
 <a href="../mock-tests.html">Mock Tests</a>
+
+<a href="../about.html">About</a>
+
+<a href="../contact.html">Contact</a>
+
 </nav>
 
 </div>
+
 </header>
+
+<!-- QUIZ -->
 
 <div class="quiz-container">
 
 <h1>⚡ Electrostatics Mock Test</h1>
 
-<p id="question-number"></p>
+<div id="question-number"></div>
 
-<img id="question-image" src="" alt="Question">
+<div id="question-box"></div>
 
 <div id="options"></div>
 
-<p id="result"></p>
+<div id="result"></div>
 
-<button id="nextBtn">Next Question →</button>
+<button id="nextBtn">
+Next Question →
+</button>
 
 </div>
+
+<!-- FOOTER -->
+
+<footer>
+
+© 2026 CUET Fiziks Prep
+
+</footer>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
