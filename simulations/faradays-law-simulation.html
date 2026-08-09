@@ -1,1 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Faraday's Law Simulation | CUET Fiziks Prep</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+
+/* HEADER */
+
+.header{
+    background:linear-gradient(135deg,#075985,#2563eb);
+    color:white;
+    text-align:center;
+    padding:22px 15px;
+}
+
+.header h1{
+    font-size:28px;
+    margin-bottom:6px;
+}
+
+.header p{
+    font-size:14px;
+    opacity:.9;
+}
+
+
+/* MAIN */
+
+.container{
+    max-width:1100px;
+    margin:25px auto;
+    padding:0 15px;
+}
+
+
+/* SIMULATION CARD */
+
+.simulation-box{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+
+/* DATA */
+
+.data-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.data-card{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:14px;
+    text-align:center;
+}
+
+.data-card small{
+    display:block;
+    color:#64748b;
+    margin-bottom:6px;
+}
+
+.data-card strong{
+    font-size:20px;
+}
+
+
+/* SIMULATION AREA */
+
+.sim-area{
+    position:relative;
+    height:450px;
+    overflow:hidden;
+    border-radius:15px;
+    border:1px solid #dbe4ef;
+    background:
+        radial-gradient(circle at center,#ffffff,#eef5fb);
+}
+
+
+/* COIL */
+
+.coil{
+    position:absolute;
+    right:145px;
+    top:80px;
+    width:180px;
+    height:270px;
+    border-right:8px solid #7c3aed;
+    border-radius:50%;
+    box-shadow:
+        14px 0 0 -6px #7c3aed,
+        28px 0 0 -7px #7c3aed,
+        42px 0 0 -8px #7c3aed,
+        56px 0 0 -9px #7c3aed;
+}
+
+.coil-label{
+    position:absolute;
+    right:105px;
+    top:360px;
+    color:#6d28d9;
+    font-weight:bold;
+}
+
+
+/* MAGNET */
+
+.magnet{
+    position:absolute;
+    left:80px;
+    top:180px;
+
+    width:170px;
+    height:90px;
+
+    display:flex;
+
+    border-radius:8px;
+
+    cursor:grab;
+
+    user-select:none;
+
+    box-shadow:0 7px 18px rgba(0,0,0,.2);
+
+    z-index:5;
+}
+
+.magnet:active{
+    cursor:grabbing;
+}
+
+.pole{
+    width:50%;
+    height:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+
+    font-size:32px;
+    font-weight:bold;
+}
+
+.north{
+    background:#ef4444;
+    border-radius:8px 0 0 8px;
+}
+
+.south{
+    background:#2563eb;
+    border-radius:0 8px 8px 0;
+}
+
+
+/* FLUX FIELD */
+
+.field-lines{
+    position:absolute;
+    left:270px;
+    top:120px;
+    width:280px;
+    height:200px;
+    opacity:0;
+    transition:.3s;
+}
+
+.field-line{
+    position:absolute;
+    left:0;
+    right:0;
+    height:3px;
+    background:#f59e0b;
+    border-radius:10px;
+}
+
+.field-line:nth-child(1){
+    top:30px;
+}
+
+.field-line:nth-child(2){
+    top:70px;
+}
+
+.field-line:nth-child(3){
+    top:110px;
+}
+
+.field-line:nth-child(4){
+    top:150px;
+}
+
+
+/* FLUX LABEL */
+
+.flux-label{
+    position:absolute;
+    top:70px;
+    left:350px;
+    color:#b45309;
+    font-weight:bold;
+    opacity:0;
+}
+
+
+/* GALVANOMETER */
+
+.galvanometer{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+
+    bottom:15px;
+
+    width:190px;
+    height:85px;
+
+    background:white;
+
+    border:3px solid #334155;
+
+    border-radius:100px 100px 15px 15px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.meter-label{
+    font-size:12px;
+    color:#64748b;
+}
+
+.needle{
+    width:4px;
+    height:40px;
+    background:#dc2626;
+
+    transform-origin:bottom center;
+
+    transform:rotate(0deg);
+
+    transition:transform .15s;
+}
+
+
+/* STATUS */
+
+.status{
+    margin-top:18px;
+
+    padding:16px;
+
+    background:#eff6ff;
+
+    border-left:5px solid #2563eb;
+
+    border-radius:10px;
+
+    line-height:1.6;
+}
+
+
+/* CONTROLS */
+
+.controls{
+    margin-top:20px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    align-items:center;
+}
+
+button{
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:9px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+button:hover{
+    background:#1d4ed8;
+    transform:translateY(-1px);
+}
+
+button.reset{
+    background:#475569;
+}
+
+.control-box{
+    flex:1;
+
+    min-width:220px;
+
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    padding:12px;
+
+    border-radius:9px;
+}
+
+.control-box label{
+    display:block;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    margin-bottom:6px;
+}
+
+input[type="range"]{
+    width:100%;
+}
+
+
+/* FORMULA */
+
+.explanation{
+    margin-top:25px;
+
+    background:white;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.06);
+}
+
+.explanation h2{
+    color:#1e3a8a;
+
+    margin-bottom:12px;
+}
+
+.formula{
+    margin:18px 0;
+
+    padding:18px;
+
+    text-align:center;
+
+    background:#f1f5f9;
+
+    border-radius:10px;
+
+    font-size:23px;
+
+    font-weight:bold;
+}
+
+.steps{
+    padding-left:22px;
+
+    line-height:1.8;
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .data-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .sim-area{
+        height:500px;
+    }
+
+    .coil{
+        right:25px;
+        top:100px;
+        width:140px;
+        height:230px;
+    }
+
+    .coil-label{
+        right:30px;
+        top:340px;
+    }
+
+    .magnet{
+        left:20px;
+        top:190px;
+        width:135px;
+        height:70px;
+    }
+
+    .pole{
+        font-size:25px;
+    }
+
+    .field-lines{
+        left:150px;
+        width:160px;
+    }
+
+    .flux-label{
+        left:175px;
+        top:75px;
+        font-size:12px;
+    }
+
+    .controls{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    button{
+        width:100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>
+        ⚡ Faraday's Law Simulation
+    </h1>
+
+    <p>
+        Visualize electromagnetic induction
+        and the relationship between magnetic flux
+        and induced EMF.
+    </p>
+
+</div>
+
+
+<div class="container">
+
+
+<div class="simulation-box">
+
+
+<!-- DATA -->
+
+<div class="data-grid">
+
+    <div class="data-card">
+
+        <small>
+            Magnetic Flux
+        </small>
+
+        <strong id="flux">
+            0.00 Wb
+        </strong>
+
+    </div>
+
+
+    <div class="data-card">
+
+        <small>
+            Change in Flux
+        </small>
+
+        <strong id="fluxChange">
+            0.00 Wb/s
+        </strong>
+
+    </div>
+
+
+    <div class="data-card">
+
+        <small>
+            Induced EMF
+        </small>
+
+        <strong id="emf">
+            0.00 V
+        </strong>
+
+    </div>
+
+
+    <div class="data-card">
+
+        <small>
+            Turns
+        </small>
+
+        <strong id="turnDisplay">
+            20
+        </strong>
+
+    </div>
+
+</div>
+
+
+<!-- SIMULATION -->
+
+<div class="sim-area">
+
+
+    <!-- MAGNET -->
+
+    <div class="magnet"
+         id="magnet">
+
+        <div class="pole north">
+            N
+        </div>
+
+        <div class="pole south">
+            S
+        </div>
+
+    </div>
+
+
+    <!-- FIELD -->
+
+    <div class="field-lines"
+         id="fieldLines">
+
+        <div class="field-line"></div>
+        <div class="field-line"></div>
+        <div class="field-line"></div>
+        <div class="field-line"></div>
+
+    </div>
+
+
+    <div class="flux-label"
+         id="fluxLabel">
+
+        Magnetic Flux Φ
+
+    </div>
+
+
+    <!-- COIL -->
+
+    <div class="coil"></div>
+
+
+    <div class="coil-label">
+        COIL
+    </div>
+
+
+    <!-- GALVANOMETER -->
+
+    <div class="galvanometer">
+
+        <div class="meter-label">
+            Induced EMF
+        </div>
+
+        <div class="needle"
+             id="needle">
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- STATUS -->
+
+<div class="status"
+     id="status">
+
+    <strong>
+        Move the magnet
+    </strong>
+
+    <br>
+
+    Move the magnet toward or away from
+    the coil to change the magnetic flux.
+
+</div>
+
+
+<!-- CONTROLS -->
+
+<div class="controls">
+
+
+    <button onclick="moveToward()">
+        🧲 Move Toward Coil
+    </button>
+
+
+    <button onclick="moveAway()">
+        ↔ Move Away
+    </button>
+
+
+    <button class="reset"
+            onclick="resetSimulation()">
+
+        Reset
+
+    </button>
+
+
+    <div class="control-box">
+
+        <label>
+            Magnet Speed:
+            <span id="speedValue">5</span>
+        </label>
+
+        <input
+            type="range"
+            id="speed"
+            min="1"
+            max="10"
+            value="5">
+
+    </div>
+
+
+    <div class="control-box">
+
+        <label>
+            Number of Turns:
+            <span id="turnValue">20</span>
+        </label>
+
+        <input
+            type="range"
+            id="turns"
+            min="5"
+            max="100"
+            value="20">
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- EXPLANATION -->
+
+<div class="explanation">
+
+    <h2>
+        Faraday's Law of Electromagnetic Induction
+    </h2>
+
+
+    <p>
+
+        Whenever the magnetic flux linked with a
+        coil changes, an emf is induced in the coil.
+
+    </p>
+
+
+    <div class="formula">
+
+        ε = −N dΦ<sub>B</sub>/dt
+
+    </div>
+
+
+    <ol class="steps">
+
+        <li>
+            Move the magnet toward the coil.
+        </li>
+
+        <li>
+            Magnetic flux through the coil changes.
+        </li>
+
+        <li>
+            An emf is induced in the coil.
+        </li>
+
+        <li>
+            Increasing the magnet speed increases
+            the rate of change of flux.
+        </li>
+
+        <li>
+            Increasing the number of turns increases
+            the induced emf.
+        </li>
+
+        <li>
+            The negative sign represents
+            <b>Lenz's Law</b>.
+        </li>
+
+    </ol>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+const magnet =
+    document.getElementById("magnet");
+
+const fluxDisplay =
+    document.getElementById("flux");
+
+const fluxChangeDisplay =
+    document.getElementById("fluxChange");
+
+const emfDisplay =
+    document.getElementById("emf");
+
+const turnDisplay =
+    document.getElementById("turnDisplay");
+
+const turnSlider =
+    document.getElementById("turns");
+
+const speedSlider =
+    document.getElementById("speed");
+
+const speedValue =
+    document.getElementById("speedValue");
+
+const turnValue =
+    document.getElementById("turnValue");
+
+const needle =
+    document.getElementById("needle");
+
+const statusBox =
+    document.getElementById("status");
+
+const fieldLines =
+    document.getElementById("fieldLines");
+
+const fluxLabel =
+    document.getElementById("fluxLabel");
+
+
+let magnetX = 80;
+
+let previousFlux = 0;
+
+let direction = 0;
+
+
+/* SPEED */
+
+speedSlider.addEventListener("input", function(){
+
+    speedValue.textContent =
+        this.value;
+
+});
+
+
+/* TURNS */
+
+turnSlider.addEventListener("input", function(){
+
+    turnValue.textContent =
+        this.value;
+
+    turnDisplay.textContent =
+        this.value;
+
+    calculate(0);
+
+});
+
+
+/* CALCULATE PHYSICS */
+
+function calculate(movement){
+
+
+    const turns =
+        Number(turnSlider.value);
+
+
+    const speed =
+        Number(speedSlider.value);
+
+
+    /*
+       Distance between magnet
+       and coil.
+    */
+
+    let distance =
+        520 - magnetX;
+
+
+    if(distance < 80)
+        distance = 80;
+
+
+    /*
+       Simplified magnetic flux.
+
+       Closer magnet →
+       larger magnetic flux.
+    */
+
+    let flux =
+        0.05 * (500 / (distance + 50));
+
+
+    if(flux > 0.45)
+        flux = 0.45;
+
+
+    /*
+       Rate of change of flux.
+
+       Movement determines
+       whether flux increases
+       or decreases.
+    */
+
+    let dPhiDt =
+        movement * speed * 0.015;
+
+
+    /*
+       Faraday's Law
+
+       ε = -N dΦ/dt
+
+    */
+
+    let emf =
+        Math.abs(turns * dPhiDt);
+
+
+    if(emf > 15)
+        emf = 15;
+
+
+    fluxDisplay.textContent =
+        flux.toFixed(3) + " Wb";
+
+
+    fluxChangeDisplay.textContent =
+        Math.abs(dPhiDt).toFixed(3) + " Wb/s";
+
+
+    emfDisplay.textContent =
+        emf.toFixed(2) + " V";
+
+
+    /*
+       Galvanometer
+
+       Direction depends on
+       whether flux increases
+       or decreases.
+    */
+
+    if(movement > 0){
+
+        needle.style.transform =
+            "rotate(-40deg)";
+
+        statusBox.innerHTML =
+
+            "<strong>Magnet moving toward coil → Flux changing</strong><br>" +
+
+            "A changing magnetic flux produces an induced emf. " +
+
+            "Increase the speed or number of turns to increase the emf.";
+
+    }
+
+    else if(movement < 0){
+
+        needle.style.transform =
+            "rotate(40deg)";
+
+        statusBox.innerHTML =
+
+            "<strong>Magnet moving away → Flux changing</strong><br>" +
+
+            "The induced emf reverses because the direction of " +
+
+            "change in magnetic flux has reversed.";
+
+    }
+
+    else{
+
+        needle.style.transform =
+            "rotate(0deg)";
+
+    }
+
+
+    if(movement !== 0){
+
+        fieldLines.style.opacity =
+            "1";
+
+        fluxLabel.style.opacity =
+            "1";
+
+    }
+
+}
+
+
+/* MOVE TOWARD */
+
+function moveToward(){
+
+    magnetX +=
+        Number(speedSlider.value) * 5;
+
+
+    if(magnetX > 360)
+        magnetX = 360;
+
+
+    magnet.style.left =
+        magnetX + "px";
+
+
+    calculate(1);
+
+}
+
+
+/* MOVE AWAY */
+
+function moveAway(){
+
+    magnetX -=
+        Number(speedSlider.value) * 5;
+
+
+    if(magnetX < 20)
+        magnetX = 20;
+
+
+    magnet.style.left =
+        magnetX + "px";
+
+
+    calculate(-1);
+
+}
+
+
+/* RESET */
+
+function resetSimulation(){
+
+    magnetX = 80;
+
+
+    magnet.style.left =
+        "80px";
+
+
+    fluxDisplay.textContent =
+        "0.00 Wb";
+
+
+    fluxChangeDisplay.textContent =
+        "0.00 Wb/s";
+
+
+    emfDisplay.textContent =
+        "0.00 V";
+
+
+    needle.style.transform =
+        "rotate(0deg)";
+
+
+    fieldLines.style.opacity =
+        "0";
+
+
+    fluxLabel.style.opacity =
+        "0";
+
+
+    statusBox.innerHTML =
+
+        "<strong>Move the magnet</strong><br>" +
+
+        "Move the magnet toward or away from " +
+
+        "the coil to change the magnetic flux.";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
