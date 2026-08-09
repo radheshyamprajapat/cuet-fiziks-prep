@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Photoelectric Effect Simulation | CUET Fiziks Prep</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+}
+
+/* HEADER */
+
+.header{
+    background:linear-gradient(135deg,#312e81,#7c3aed);
+    color:white;
+    text-align:center;
+    padding:22px 15px;
+}
+
+.header h1{
+    font-size:28px;
+    margin-bottom:6px;
+}
+
+.header p{
+    font-size:14px;
+    opacity:.9;
+}
+
+/* MAIN */
+
+.container{
+    max-width:1100px;
+    margin:25px auto;
+    padding:0 15px;
+}
+
+.simulation-box{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+/* DATA */
+
+.data-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.data-card{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:14px;
+    text-align:center;
+}
+
+.data-card small{
+    display:block;
+    color:#64748b;
+    margin-bottom:6px;
+}
+
+.data-card strong{
+    font-size:20px;
+}
+
+/* SIMULATION AREA */
+
+.sim-area{
+    position:relative;
+    height:450px;
+    overflow:hidden;
+    border-radius:15px;
+    border:1px solid #dbe4ef;
+    background:
+        linear-gradient(#ffffff,#f5f3ff);
+}
+
+/* LIGHT SOURCE */
+
+.light-source{
+    position:absolute;
+    left:35px;
+    top:150px;
+
+    width:100px;
+    height:100px;
+
+    border-radius:50%;
+
+    background:#fef08a;
+
+    box-shadow:
+        0 0 20px #facc15,
+        0 0 50px #fde047,
+        0 0 90px #fef08a;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:45px;
+
+    z-index:3;
+}
+
+/* LIGHT BEAM */
+
+.beam{
+    position:absolute;
+
+    left:120px;
+    top:185px;
+
+    width:270px;
+    height:30px;
+
+    background:linear-gradient(
+        90deg,
+        #facc15,
+        #fde68a,
+        transparent
+    );
+
+    opacity:.7;
+
+    transition:.3s;
+}
+
+.photon{
+    position:absolute;
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:#f59e0b;
+
+    animation:photonMove 1.2s linear infinite;
+}
+
+.photon:nth-child(1){
+    top:5px;
+    animation-delay:0s;
+}
+
+.photon:nth-child(2){
+    top:15px;
+    animation-delay:.3s;
+}
+
+.photon:nth-child(3){
+    top:25px;
+    animation-delay:.6s;
+}
+
+@keyframes photonMove{
+
+    from{
+        left:0;
+    }
+
+    to{
+        left:250px;
+    }
+
+}
+
+/* METAL PLATE */
+
+.metal-plate{
+    position:absolute;
+
+    right:120px;
+    top:95px;
+
+    width:45px;
+    height:270px;
+
+    background:linear-gradient(
+        90deg,
+        #94a3b8,
+        #e2e8f0,
+        #64748b
+    );
+
+    border-radius:5px;
+
+    box-shadow:
+        3px 0 8px rgba(0,0,0,.15);
+}
+
+.metal-label{
+    position:absolute;
+
+    right:85px;
+    top:370px;
+
+    font-weight:bold;
+
+    color:#475569;
+}
+
+/* ELECTRONS */
+
+.electrons{
+    position:absolute;
+
+    right:165px;
+    top:130px;
+
+    width:180px;
+    height:200px;
+
+    pointer-events:none;
+}
+
+.electron{
+    position:absolute;
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    box-shadow:0 0 8px #60a5fa;
+
+    opacity:0;
+}
+
+.electron:nth-child(1){
+    top:40px;
+}
+
+.electron:nth-child(2){
+    top:80px;
+}
+
+.electron:nth-child(3){
+    top:120px;
+}
+
+.electron:nth-child(4){
+    top:160px;
+}
+
+.electron.active{
+    opacity:1;
+
+    animation:
+        electronMove 1s linear infinite;
+}
+
+@keyframes electronMove{
+
+    from{
+        right:0;
+        transform:translateX(0);
+    }
+
+    to{
+        right:170px;
+        transform:translateX(-100px);
+    }
+
+}
+
+/* LABEL */
+
+.emission-label{
+    position:absolute;
+
+    right:275px;
+    top:70px;
+
+    color:#2563eb;
+
+    font-weight:bold;
+
+    opacity:0;
+
+    transition:.3s;
+}
+
+/* STATUS */
+
+.status{
+    margin-top:18px;
+
+    padding:16px;
+
+    background:#f5f3ff;
+
+    border-left:5px solid #7c3aed;
+
+    border-radius:10px;
+
+    line-height:1.6;
+}
+
+/* CONTROLS */
+
+.controls{
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+}
+
+.control-box{
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    padding:15px;
+
+    border-radius:10px;
+}
+
+.control-box label{
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    margin-bottom:8px;
+}
+
+input[type="range"]{
+    width:100%;
+}
+
+/* BUTTON */
+
+.buttons{
+    grid-column:1/-1;
+
+    display:flex;
+
+    gap:10px;
+}
+
+button{
+    flex:1;
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:9px;
+
+    background:#7c3aed;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+button:hover{
+    background:#6d28d9;
+
+    transform:translateY(-1px);
+}
+
+button.reset{
+    background:#475569;
+}
+
+/* EXPLANATION */
+
+.explanation{
+    margin-top:25px;
+
+    background:white;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.06);
+}
+
+.explanation h2{
+    color:#5b21b6;
+
+    margin-bottom:12px;
+}
+
+.formula{
+    margin:18px 0;
+
+    padding:18px;
+
+    text-align:center;
+
+    background:#f5f3ff;
+
+    border-radius:10px;
+
+    font-size:22px;
+
+    font-weight:bold;
+}
+
+.steps{
+    padding-left:22px;
+
+    line-height:1.8;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .data-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .sim-area{
+        height:500px;
+    }
+
+    .light-source{
+        left:15px;
+        top:170px;
+
+        width:70px;
+        height:70px;
+
+        font-size:30px;
+    }
+
+    .beam{
+        left:75px;
+        top:190px;
+        width:180px;
+    }
+
+    .metal-plate{
+        right:45px;
+        top:120px;
+        height:230px;
+    }
+
+    .metal-label{
+        right:20px;
+        top:365px;
+        font-size:12px;
+    }
+
+    .emission-label{
+        right:125px;
+        top:90px;
+        font-size:11px;
+    }
+
+    .controls{
+        grid-template-columns:1fr;
+    }
+
+    .buttons{
+        grid-column:auto;
+        flex-direction:column;
+    }
+
+    button{
+        width:100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>
+        💡 Photoelectric Effect Simulation
+    </h1>
+
+    <p>
+        Explore how frequency and intensity of light
+        affect photoelectron emission.
+    </p>
+
+</div>
+
+
+<div class="container">
+
+
+<div class="simulation-box">
+
+
+<!-- DATA -->
+
+<div class="data-grid">
+
+    <div class="data-card">
+
+        <small>
+            Frequency
+        </small>
+
+        <strong id="frequencyDisplay">
+            5.0 × 10¹⁴ Hz
+        </strong>
+
+    </div>
+
+
+    <div class="data-card">
+
+        <small>
+            Threshold Frequency
+        </small>
+
+        <strong>
+            5.0 × 10¹⁴ Hz
+        </strong>
+
+    </div>
+
+
+    <div class="data-card">
+
+        <small>
+            Photon Energy
+        </small>
+
+        <strong id="energyDisplay">
+            2.07 eV
+        </strong>
+
+    </div>
+
+
+    <div class="data-card">
+
+        <small>
+            Maximum KE
+        </small>
+
+        <strong id="keDisplay">
+            0.00 eV
+        </strong>
+
+    </div>
+
+</div>
+
+
+<!-- SIMULATION -->
+
+<div class="sim-area">
+
+
+    <!-- LIGHT -->
+
+    <div class="light-source">
+        💡
+    </div>
+
+
+    <!-- BEAM -->
+
+    <div class="beam">
+
+        <div class="photon"></div>
+        <div class="photon"></div>
+        <div class="photon"></div>
+
+    </div>
+
+
+    <!-- METAL -->
+
+    <div class="metal-plate"></div>
+
+
+    <div class="metal-label">
+        METAL SURFACE
+    </div>
+
+
+    <!-- ELECTRONS -->
+
+    <div class="electrons"
+         id="electrons">
+
+        <div class="electron"></div>
+        <div class="electron"></div>
+        <div class="electron"></div>
+        <div class="electron"></div>
+
+    </div>
+
+
+    <div class="emission-label"
+         id="emissionLabel">
+
+        Photoelectrons ↑
+
+    </div>
+
+
+</div>
+
+
+<!-- STATUS -->
+
+<div class="status"
+     id="status">
+
+    <strong>
+        Adjust the frequency of light.
+    </strong>
+
+    <br>
+
+    If the frequency is below the threshold frequency,
+    no photoelectrons are emitted.
+
+</div>
+
+
+<!-- CONTROLS -->
+
+<div class="controls">
+
+
+    <!-- FREQUENCY -->
+
+    <div class="control-box">
+
+        <label>
+
+            <span>
+                Light Frequency
+            </span>
+
+            <span id="frequencyValue">
+                5.0 × 10¹⁴ Hz
+            </span>
+
+        </label>
+
+        <input
+            type="range"
+            id="frequency"
+            min="3"
+            max="10"
+            step="0.1"
+            value="5">
+
+    </div>
+
+
+    <!-- INTENSITY -->
+
+    <div class="control-box">
+
+        <label>
+
+            <span>
+                Light Intensity
+            </span>
+
+            <span id="intensityValue">
+                50%
+            </span>
+
+        </label>
+
+        <input
+            type="range"
+            id="intensity"
+            min="10"
+            max="100"
+            value="50">
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+        <button onclick="startSimulation()">
+
+            ▶ Turn Light ON
+
+        </button>
+
+
+        <button class="reset"
+                onclick="resetSimulation()">
+
+            Reset
+
+        </button>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- EXPLANATION -->
+
+<div class="explanation">
+
+    <h2>
+        Einstein's Photoelectric Equation
+    </h2>
+
+
+    <p>
+
+        When light of sufficient frequency falls
+        on a metal surface, electrons are emitted.
+
+    </p>
+
+
+    <div class="formula">
+
+        K<sub>max</sub> = hν − φ
+
+    </div>
+
+
+    <ol class="steps">
+
+        <li>
+            Each photon has energy
+            <b>E = hν</b>.
+        </li>
+
+        <li>
+            A minimum frequency is required to
+            overcome the work function of the metal.
+        </li>
+
+        <li>
+            If ν &lt; ν₀, no photoelectrons are emitted.
+        </li>
+
+        <li>
+            If ν &gt; ν₀, photoelectrons are emitted.
+        </li>
+
+        <li>
+            Increasing frequency increases the
+            maximum kinetic energy of electrons.
+        </li>
+
+        <li>
+            Increasing intensity increases the
+            number of emitted electrons, not their
+            maximum kinetic energy.
+        </li>
+
+    </ol>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* ===============================
+   ELEMENTS
+================================ */
+
+const frequencySlider =
+    document.getElementById("frequency");
+
+const intensitySlider =
+    document.getElementById("intensity");
+
+const frequencyValue =
+    document.getElementById("frequencyValue");
+
+const intensityValue =
+    document.getElementById("intensityValue");
+
+const frequencyDisplay =
+    document.getElementById("frequencyDisplay");
+
+const energyDisplay =
+    document.getElementById("energyDisplay");
+
+const keDisplay =
+    document.getElementById("keDisplay");
+
+const statusBox =
+    document.getElementById("status");
+
+const electrons =
+    document.querySelectorAll(".electron");
+
+const emissionLabel =
+    document.getElementById("emissionLabel");
+
+const light =
+    document.querySelector(".light-source");
+
+const beam =
+    document.querySelector(".beam");
+
+
+/* ===============================
+   PHYSICS CONSTANTS
+================================ */
+
+/*
+   Work function chosen as 2.07 eV.
+
+   Threshold frequency ≈ 5 × 10¹⁴ Hz
+*/
+
+const thresholdFrequency =
+    5.0;
+
+
+/* ===============================
+   FREQUENCY
+================================ */
+
+frequencySlider.addEventListener(
+    "input",
+    updateSimulation
+);
+
+
+/* ===============================
+   INTENSITY
+================================ */
+
+intensitySlider.addEventListener(
+    "input",
+    updateSimulation
+);
+
+
+/* ===============================
+   UPDATE
+================================ */
+
+function updateSimulation(){
+
+    const frequency =
+        Number(frequencySlider.value);
+
+    const intensity =
+        Number(intensitySlider.value);
+
+
+    /*
+       Photon energy:
+
+       E(eV) ≈ 4.136 × 10⁻¹⁵ × ν(Hz)
+
+       For ν in units of 10¹⁴ Hz:
+
+       E ≈ 0.4136 × ν
+    */
+
+    const photonEnergy =
+        0.4136 * frequency;
+
+
+    /*
+       Einstein equation:
+
+       KEmax = hν − φ
+    */
+
+    let kineticEnergy =
+        photonEnergy - 2.07;
+
+
+    if(kineticEnergy < 0)
+        kineticEnergy = 0;
+
+
+    /* DISPLAY */
+
+    frequencyDisplay.textContent =
+        frequency.toFixed(1)
+        + " × 10¹⁴ Hz";
+
+
+    frequencyValue.textContent =
+        frequency.toFixed(1)
+        + " × 10¹⁴ Hz";
+
+
+    intensityValue.textContent =
+        intensity + "%";
+
+
+    energyDisplay.textContent =
+        photonEnergy.toFixed(2)
+        + " eV";
+
+
+    keDisplay.textContent =
+        kineticEnergy.toFixed(2)
+        + " eV";
+
+
+    /*
+       LIGHT INTENSITY
+    */
+
+    const glow =
+        40 + intensity * 0.8;
+
+
+    light.style.boxShadow =
+        "0 0 20px #facc15," +
+        "0 0 " + glow + "px #fde047," +
+        "0 0 " + (glow + 40) + "px #fef08a";
+
+
+    /*
+       PHOTOELECTRON CONDITION
+    */
+
+    if(frequency >= thresholdFrequency){
+
+        /*
+           More intensity →
+           more electrons
+        */
+
+        const number =
+            Math.ceil(intensity / 25);
+
+
+        electrons.forEach(
+            (electron,index)=>{
+
+                if(index < number){
+
+                    electron.classList.add(
+                        "active"
+                    );
+
+                }
+                else{
+
+                    electron.classList.remove(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+
+        emissionLabel.style.opacity =
+            "1";
+
+
+        statusBox.innerHTML =
+
+            "<strong>Photoelectric emission occurs!</strong><br>" +
+
+            "The photon energy is greater than or equal to " +
+
+            "the work function. Increasing frequency increases " +
+
+            "the maximum kinetic energy, while increasing intensity " +
+
+            "mainly increases the number of emitted electrons.";
+
+    }
+
+    else{
+
+        electrons.forEach(
+            electron=>{
+
+                electron.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+        emissionLabel.style.opacity =
+            "0";
+
+
+        statusBox.innerHTML =
+
+            "<strong>No photoelectric emission.</strong><br>" +
+
+            "The frequency is below the threshold frequency. " +
+
+            "Increasing intensity alone cannot eject electrons.";
+
+    }
+
+}
+
+
+/* ===============================
+   START
+================================ */
+
+function startSimulation(){
+
+    updateSimulation();
+
+    beam.style.opacity =
+        "1";
+
+    light.style.transform =
+        "scale(1.08)";
+
+    setTimeout(()=>{
+
+        light.style.transform =
+            "scale(1)";
+
+    },300);
+
+}
+
+
+/* ===============================
+   RESET
+================================ */
+
+function resetSimulation(){
+
+    frequencySlider.value =
+        5;
+
+    intensitySlider.value =
+        50;
+
+    beam.style.opacity =
+        ".7";
+
+    electrons.forEach(
+        electron=>{
+
+            electron.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+    emissionLabel.style.opacity =
+        "0";
+
+
+    light.style.transform =
+        "scale(1)";
+
+
+    updateSimulation();
+
+}
+
+
+/* INITIAL */
+
+updateSimulation();
+
+</script>
+
+
+</body>
+
+</html>
