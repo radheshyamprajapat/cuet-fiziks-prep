@@ -281,3 +281,96 @@ text-decoration:none;
     }
 
 }
+
+/* =====================================
+   SIMULATIONS PAGE
+===================================== */
+
+.simulation-list {
+    margin-top: 30px;
+}
+
+.simulation-list .card {
+    text-align: left;
+    transition: 0.3s ease;
+}
+
+.simulation-list .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.12);
+}
+
+.simulation-card-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: #eef4ff;
+
+    font-size: 32px;
+
+    margin-bottom: 15px;
+}
+
+.simulation-list .card h3 {
+    color: #0d47a1;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.simulation-list .card p {
+    color: #64748b;
+    line-height: 1.6;
+    min-height: 75px;
+}
+
+.simulation-level {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: .5px;
+}
+
+.simulation-list .simulation-btn {
+    display: block;
+
+    text-align: center;
+
+    margin-top: 18px;
+
+    background: #1565ff;
+
+    color: white;
+
+    padding: 11px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: .2s;
+}
+
+.simulation-list .simulation-btn:hover {
+    background: #0d47a1;
+}
