@@ -129,6 +129,140 @@ border-radius:8px;
 text-decoration:none;
 }
 
+.predictor-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    padding: 28px;
+    margin: 25px 0;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        135deg,
+        #eef3ff,
+        #ffffff
+    );
+
+    border: 1px solid #dbe3ff;
+
+    box-shadow: 0 12px 30px rgba(49, 87, 213, 0.12);
+
+    overflow: hidden;
+
+    transition: 0.3s ease;
+}
+
+.predictor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(49, 87, 213, 0.20);
+}
+
+.predictor-icon {
+    min-width: 75px;
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    font-size: 38px;
+
+    background: #3157d5;
+    color: white;
+
+    box-shadow: 0 8px 20px rgba(49, 87, 213, 0.25);
+}
+
+.predictor-content {
+    flex: 1;
+}
+
+.predictor-tag {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #3157d5;
+}
+
+.predictor-content h2 {
+    margin: 5px 0;
+    font-size: 26px;
+    color: #172033;
+}
+
+.predictor-content p {
+    margin: 8px 0 18px;
+    color: #667085;
+    line-height: 1.5;
+}
+
+.predictor-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    background: #3157d5;
+    color: white;
+
+    text-decoration: none;
+    font-weight: 700;
+
+    transition: 0.2s;
+}
+
+.predictor-btn:hover {
+    background: #243fa8;
+    transform: translateX(3px);
+}
+
+.predictor-btn span {
+    font-size: 20px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .predictor-card {
+        padding: 20px;
+        gap: 16px;
+    }
+
+    .predictor-icon {
+        min-width: 55px;
+        height: 55px;
+        font-size: 27px;
+        border-radius: 14px;
+    }
+
+    .predictor-content h2 {
+        font-size: 21px;
+    }
+
+    .predictor-content p {
+        font-size: 14px;
+    }
+
+    .predictor-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+
+
+
+
+
 /* =====================================
    INTERACTIVE SIMULATIONS HOME CARD
 ===================================== */
@@ -374,3 +508,5 @@ text-decoration:none;
 .simulation-list .simulation-btn:hover {
     background: #0d47a1;
 }
+
+
