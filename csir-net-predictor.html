@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSIR NET Physical Sciences Result Predictor</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--primary:#3157d5;--border:#e4e7ec;--green:#16845b;--orange:#c66a12;--red:#c43d3d}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
+.container{max-width:1050px;margin:auto;padding:22px}
+header{background:linear-gradient(135deg,#172b75,#3157d5);color:white;padding:34px 22px;border-radius:0 0 24px 24px}
+header .container{padding-top:0;padding-bottom:0}
+h1{margin:0 0 8px;font-size:clamp(26px,5vw,42px)} h2{margin-top:0}
+.subtitle{opacity:.9;margin:0;line-height:1.5}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 5px 18px rgba(16,24,40,.04)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+label{display:block;font-weight:700;margin-bottom:7px;font-size:14px}
+input,select{width:100%;padding:12px;border:1px solid #d0d5dd;border-radius:10px;font-size:16px;background:white}
+table{width:100%;border-collapse:collapse;font-size:14px} th,td{padding:11px 8px;border-bottom:1px solid var(--border);text-align:center} th{background:#f8f9fc}
+button{border:0;background:var(--primary);color:white;padding:14px 20px;border-radius:11px;font-size:16px;font-weight:800;cursor:pointer;width:100%;margin-top:14px}
+.result{display:none}.result h2{text-align:center}.score{font-size:42px;text-align:center;font-weight:900;margin:8px}
+.badge{display:block;text-align:center;font-size:22px;font-weight:900;padding:14px;border-radius:12px;margin:15px 0}
+.jrf{background:#e9f8f1;color:var(--green)} .ls{background:#edf2ff;color:var(--primary)} .phd{background:#fff2df;color:var(--orange)} .none{background:#ffe9e9;color:var(--red)}
+.bar{height:12px;background:#edf0f5;border-radius:20px;overflow:hidden;margin:6px 0 14px}.fill{height:100%;background:var(--primary);border-radius:20px}
+.small{font-size:13px;color:var(--muted);line-height:1.5}.warning{background:#fff8e7;border-left:4px solid #e2a21a;padding:13px;border-radius:8px}
+.trend-wrap{overflow-x:auto}.trend-table{min-width:900px}
+.footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+@media(max-width:700px){.grid,.grid2{grid-template-columns:1fr}.card{padding:16px}header{padding:28px 10px}}
+</style>
+</head>
+<body>
+<header><div class="container">
+<h1>CSIR NET Physical Sciences</h1>
+<p class="subtitle">Result Predictor • JRF • Lectureship/Assistant Professor • PhD Only</p>
+</div></header>
 
+<main class="container">
+<section class="card">
+<h2>🎯 Predict Your Result</h2>
+<div class="grid2">
+<div><label>Category</label>
+<select id="category">
+<option value="UR">General / UR</option><option value="EWS">EWS</option>
+<option value="OBC">OBC-NCL</option><option value="SC">SC</option>
+<option value="ST">ST</option><option value="PwD">PwD</option>
+</select></div>
+<div><label>Prediction target</label>
+<select id="target"><option value="all">Show all three</option><option value="jrf">JRF</option><option value="ls">LS / Assistant Professor</option><option value="phd">PhD Only</option></select></div>
+</div>
+
+<h3>Enter your attempted questions</h3>
+<p class="small">Current Physical Sciences pattern used here: Part A +2/−0.5, Part B +3.5/−0.875, Part C +5/−1.25. Enter correct and wrong counts; unattempted is calculated automatically.</p>
+<div class="grid">
+<div><label>Part A — Correct</label><input id="ac" type="number" min="0" max="15" value="0"></div>
+<div><label>Part A — Wrong</label><input id="aw" type="number" min="0" max="15" value="0"></div>
+<div><label>Part A — Unattempted</label><input id="au" type="number" min="0" max="15" value="15" readonly></div>
+<div><label>Part B — Correct</label><input id="bc" type="number" min="0" max="20" value="0"></div>
+<div><label>Part B — Wrong</label><input id="bw" type="number" min="0" max="20" value="0"></div>
+<div><label>Part B — Unattempted</label><input id="bu" type="number" min="0" max="20" value="20" readonly></div>
+<div><label>Part C — Correct</label><input id="cc" type="number" min="0" max="20" value="0"></div>
+<div><label>Part C — Wrong</label><input id="cw" type="number" min="0" max="20" value="0"></div>
+<div><label>Part C — Unattempted</label><input id="cu" type="number" min="0" max="20" value="20" readonly></div>
+</div>
+<button onclick="predict()">🔍 Predict My Result</button>
+</section>
+
+<section class="card result" id="result">
+<h2>Your Estimated Score</h2><div class="score" id="score">0.00 / 200</div>
+<div id="badge" class="badge"></div>
+<div id="details"></div>
+<div class="warning"><b>Important:</b> This is an estimate, not an official result. Historical cutoffs vary with paper difficulty, competition and session. The official CSIR/UGC/NTA result and cutoff are final.</div>
+</section>
+
+<section class="card">
+<h2>📊 Physical Sciences Cutoff Trend</h2>
+<p class="small">Percentages shown are official cutoff percentages. PhD-only was introduced as a separate outcome after the NEP-related change; older sessions did not always publish a separate Physical Sciences PhD cutoff.</p>
+<div class="trend-wrap"><table class="trend-table"><thead><tr>
+<th>Session</th><th>UR JRF</th><th>UR LS</th><th>UR PhD</th><th>OBC JRF</th><th>SC JRF</th><th>ST JRF</th><th>EWS JRF</th>
+</tr></thead><tbody id="trend"></tbody></table></div>
+</section>
+
+<section class="card">
+<h2>🧠 How the predictor works</h2>
+<ul>
+<li>Calculates your total raw percentage from Part A, B and C.</li>
+<li>Compares your score with the selected category's recent JRF, LS and PhD cutoffs.</li>
+<li>Uses the latest 6 available Physical Sciences result cycles in the trend table.</li>
+<li>For prediction, a safety margin is added instead of treating the historical average as a guaranteed cutoff.</li>
+</ul>
+<p class="small">Historical data source: CSIR-HRDG official cutoff notices. The June 2023 cycle was a merged December 2022/June 2023 cycle. December 2023 and June 2024 did not provide a separate subject-wise PhD cutoff for Physical Sciences in the same way later cycles did.</p>
+</section>
+</main>
+<div class="footer">CUET Fiziks Prep • CSIR NET Physical Sciences Result Predictor</div>
+
+<script>
+const data = {
+"Dec 2025":{UR:{jrf:46.125,ls:41.5125,phd:33},EWS:{jrf:39.063,ls:35.1567,phd:33},OBC:{jrf:37.938,ls:34.1442,phd:33},SC:{jrf:28.688,ls:25.8192,phd:25},ST:{jrf:25.250,ls:25,phd:26.125},PwD:{jrf:25,ls:25,phd:25}},
+"Jun 2025":{UR:{jrf:51.188,ls:46.069,phd:36.5},EWS:{jrf:42.375,ls:38.1375,phd:33},OBC:{jrf:43.375,ls:39.038,phd:33},SC:{jrf:31.625,ls:28.463,phd:25},ST:{jrf:29.188,ls:26.269,phd:25},PwD:{jrf:25.125,ls:25,phd:25}},
+"Dec 2024":{UR:{jrf:54.188,ls:48.7692,phd:37.563},EWS:{jrf:43.188,ls:38.8692,phd:33.063},OBC:{jrf:44.063,ls:39.6567,phd:33},SC:{jrf:33.313,ls:29.9817,phd:25},ST:{jrf:29.375,ls:26.4375,phd:25},PwD:{jrf:25.25,ls:25,phd:25}},
+"Jun 2024":{UR:{jrf:43.813,ls:39.4317,phd:33},EWS:{jrf:36,ls:33,phd:33},OBC:{jrf:37.188,ls:33.4692,phd:33},SC:{jrf:28.563,ls:25.7067,phd:25},ST:{jrf:26.25,ls:25,phd:25},PwD:{jrf:25.188,ls:25,phd:25}},
+"Dec 2023":{UR:{jrf:43.938,ls:39.5442,phd:33},EWS:{jrf:36.688,ls:33.0192,phd:33},OBC:{jrf:36.75,ls:33.075,phd:33},SC:{jrf:30.375,ls:27.3375,phd:25},ST:{jrf:26.938,ls:25,phd:25},PwD:{jrf:25.875,ls:25,phd:25}},
+"Jun 2023*":{UR:{jrf:39.75,ls:35.775,phd:33},EWS:{jrf:33.63,ls:33,phd:33},OBC:{jrf:33.31,ls:33,phd:33},SC:{jrf:25.81,ls:25,phd:25},ST:{jrf:25,ls:25,phd:25},PwD:{jrf:25.5,ls:25,phd:25}}
+};
+
+const keys=["UR","EWS","OBC","SC","ST","PwD"];
+function n(id){return Math.max(0,Number(document.getElementById(id).value)||0)}
+function updateUnattempted(){
+ [["a",15],["b",20],["c",20]].forEach(([p,max])=>{
+   const u=max-n(p+"c")-n(p+"w"); document.getElementById(p+"u").value=Math.max(0,u);
+ });
+}
+document.querySelectorAll("input").forEach(x=>x.addEventListener("input",updateUnattempted));
+updateUnattempted();
+
+function historical(cat,type){
+ const vals=Object.values(data).map(x=>x[cat][type]);
+ return vals.reduce((a,b)=>a+b,0)/vals.length;
+}
+function predict(){
+ updateUnattempted();
+ const ac=n("ac"),aw=n("aw"),bc=n("bc"),bw=n("bw"),cc=n("cc"),cw=n("cw");
+ const score=ac*2-aw*.5+bc*3.5-bw*.875+cc*5-cw*1.25;
+ const pct=score/2; // 200 marks = 100%
+ const cat=document.getElementById("category").value;
+ const target=document.getElementById("target").value;
+ const recent=Object.values(data).slice(0,3).map(x=>x[cat]);
+ const avg={jrf:recent.reduce((s,x)=>s+x.jrf,0)/3,ls:recent.reduce((s,x)=>s+x.ls,0)/3,phd:recent.reduce((s,x)=>s+x.phd,0)/3};
+ let qualification="Not safely qualified", cls="none";
+ if(pct>=avg.jrf+2){qualification="Likely JRF";cls="jrf"}
+ else if(pct>=avg.ls+2){qualification="Likely LS / Assistant Professor";cls="ls"}
+ else if(pct>=avg.phd+2){qualification="Likely PhD Only";cls="phd"}
+ else if(pct>=avg.phd-1){qualification="Borderline — PhD Only";cls="phd"}
+ if(target!=="all"){
+   const cutoff=avg[target];
+   qualification=pct>=cutoff+2 ? "Likely "+(target==="jrf"?"JRF":target==="ls"?"LS / Assistant Professor":"PhD Only")
+     : pct>=cutoff-1 ? "Borderline for "+(target==="jrf"?"JRF":target==="ls"?"LS / Assistant Professor":"PhD Only") : "Below recent "+target.toUpperCase()+" trend";
+   cls=target==="jrf"?"jrf":target==="ls"?"ls":"phd";
+ }
+ document.getElementById("score").textContent=score.toFixed(2)+" / 200 ("+pct.toFixed(2)+"%)";
+ const badge=document.getElementById("badge"); badge.textContent=qualification;badge.className="badge "+cls;
+ document.getElementById("details").innerHTML=`
+ <p><b>${cat}</b> recent-3-session average trend:</p>
+ <div>JRF — ${avg.jrf.toFixed(2)}%<div class="bar"><div class="fill" style="width:${Math.min(100,pct/avg.jrf*70)}%"></div></div></div>
+ <div>LS / Assistant Professor — ${avg.ls.toFixed(2)}%<div class="bar"><div class="fill" style="width:${Math.min(100,pct/avg.ls*70)}%"></div></div></div>
+ <div>PhD Only — ${avg.phd.toFixed(2)}%<div class="bar"><div class="fill" style="width:${Math.min(100,pct/avg.phd*70)}%"></div></div></div>
+ <p class="small">Prediction uses the recent 3-session average plus a small safety margin. It should not be interpreted as an official cutoff.</p>`;
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+const tbody=document.getElementById("trend");
+Object.entries(data).forEach(([session,x])=>{
+ tbody.innerHTML+=`<tr><td><b>${session}</b></td><td>${x.UR.jrf}</td><td>${x.UR.ls}</td><td>${x.UR.phd}</td><td>${x.OBC.jrf}</td><td>${x.SC.jrf}</td><td>${x.ST.jrf}</td><td>${x.EWS.jrf}</td></tr>`;
+});
+</script>
+</body>
+</html>
