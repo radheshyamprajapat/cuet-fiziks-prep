@@ -510,3 +510,259 @@ text-decoration:none;
 }
 
 
+
+/* =========================================
+   CSIR NET CUTOFF FEATURE CARD
+   Matches Interactive Simulations style
+========================================= */
+
+.cutoff-feature-section {
+    padding: 20px 0 40px;
+}
+
+.cutoff-feature-card {
+
+    position: relative;
+
+    width: 100%;
+    max-width: 1100px;
+
+    min-height: 190px;
+
+    margin: 0 auto;
+
+    padding: 32px 40px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    border: 1px solid #d9e5f8;
+
+    background:
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(37, 99, 235, 0.06),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #f8fbff,
+            #ffffff
+        );
+
+    box-shadow:
+        0 12px 30px rgba(30, 64, 175, 0.08);
+
+    transition: all 0.3s ease;
+}
+
+
+/* subtle hover */
+
+.cutoff-feature-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 18px 40px rgba(30, 64, 175, 0.13);
+
+    border-color: #bfd4f5;
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.cutoff-icon-box {
+
+    flex-shrink: 0;
+
+    width: 76px;
+    height: 76px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background: white;
+
+    font-size: 32px;
+
+    box-shadow:
+        0 8px 22px rgba(15, 23, 42, 0.10);
+
+    border: 1px solid #edf2f8;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.cutoff-feature-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    flex: 1;
+}
+
+
+.cutoff-label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+}
+
+
+.cutoff-feature-content h2 {
+
+    margin: 0 0 7px;
+
+    color: #111827;
+
+    font-size: 26px;
+
+    line-height: 1.2;
+
+    font-weight: 750;
+}
+
+
+.cutoff-feature-content p {
+
+    margin: 0 0 17px;
+
+    color: #526581;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.cutoff-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 9px 15px;
+
+    border-radius: 7px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: all 0.25s ease;
+}
+
+
+.cutoff-button:hover {
+
+    background: #1d4ed8;
+
+    transform: translateX(2px);
+}
+
+
+/* =========================================
+   DECORATIVE BACKGROUND
+========================================= */
+
+.cutoff-feature-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    right: -100px;
+    bottom: -150px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(37, 99, 235, 0.08);
+
+    box-shadow:
+        0 0 0 25px rgba(37, 99, 235, 0.025),
+        0 0 0 50px rgba(37, 99, 235, 0.02);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+    .cutoff-feature-section {
+        padding: 15px 15px 30px;
+    }
+
+    .cutoff-feature-card {
+
+        padding: 25px 22px;
+
+        gap: 18px;
+
+        align-items: flex-start;
+
+        border-radius: 17px;
+    }
+
+    .cutoff-icon-box {
+
+        width: 58px;
+        height: 58px;
+
+        font-size: 25px;
+
+        border-radius: 14px;
+    }
+
+    .cutoff-feature-content h2 {
+        font-size: 21px;
+    }
+
+    .cutoff-feature-content p {
+        font-size: 13px;
+    }
+
+}
+
