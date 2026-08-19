@@ -1,1 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSIR NET Physics Cutoff 2026 | Previous Years Trend & Safe Score</title>
+
+    <meta name="description"
+          content="CSIR NET Physical Sciences cutoff previous years trend, category-wise cutoff, JRF cutoff, Assistant Professor cutoff and preparation target score.">
+
+    <meta name="keywords"
+          content="CSIR NET Physics cutoff, CSIR NET Physical Sciences cutoff, CSIR NET cutoff 2026, CSIR NET JRF cutoff, CSIR NET Physics previous year cutoff">
+
+    <meta name="author" content="CUET Fiziks Prep">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        /* ================================
+           GLOBAL
+        ================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: auto;
+        }
+
+
+        /* ================================
+           NAVBAR
+        ================================= */
+
+        .navbar {
+            background: #ffffff;
+            border-bottom: 1px solid #e7eaf0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-inner {
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #2563eb;
+        }
+
+        .logo span {
+            color: #111827;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #374151;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+
+        /* ================================
+           HERO
+        ================================= */
+
+        .hero {
+            background:
+                radial-gradient(circle at 80% 20%, rgba(96,165,250,.25), transparent 35%),
+                linear-gradient(135deg, #0f172a, #1d4ed8);
+
+            color: white;
+            padding: 75px 0 85px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255,255,255,.14);
+            border: 1px solid rgba(255,255,255,.25);
+            padding: 7px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 58px);
+            line-height: 1.08;
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 760px;
+            color: #dbeafe;
+        }
+
+
+        /* ================================
+           MAIN ARTICLE
+        ================================= */
+
+        .article {
+            padding: 55px 0;
+        }
+
+        .article-content {
+            background: white;
+            border-radius: 22px;
+            padding: clamp(25px, 5vw, 55px);
+            box-shadow: 0 10px 35px rgba(15,23,42,.06);
+        }
+
+        .article h2 {
+            font-size: 30px;
+            margin: 45px 0 16px;
+            color: #111827;
+        }
+
+        .article h2:first-child {
+            margin-top: 0;
+        }
+
+        .article h3 {
+            margin-top: 28px;
+            margin-bottom: 10px;
+            color: #1e3a8a;
+        }
+
+        .article p {
+            margin-bottom: 17px;
+            color: #4b5563;
+        }
+
+        .article ul {
+            margin: 15px 0 20px 22px;
+            color: #4b5563;
+        }
+
+        .article li {
+            margin-bottom: 8px;
+        }
+
+
+        /* ================================
+           QUICK STATS
+        ================================= */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 30px 0 40px;
+        }
+
+        .stat-card {
+            padding: 25px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #eff6ff, #ffffff);
+            border: 1px solid #dbeafe;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2563eb;
+        }
+
+        .stat-title {
+            font-weight: 700;
+            margin-top: 4px;
+            color: #111827;
+        }
+
+        .stat-sub {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+
+        /* ================================
+           HIGHLIGHT BOX
+        ================================= */
+
+        .highlight {
+            background: #eff6ff;
+            border-left: 5px solid #2563eb;
+            padding: 20px 22px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .highlight strong {
+            color: #1d4ed8;
+        }
+
+
+        /* ================================
+           TABLE
+        ================================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 25px 0;
+            border-radius: 15px;
+            border: 1px solid #e5e7eb;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+            background: white;
+        }
+
+        th {
+            background: #172554;
+            color: white;
+            padding: 14px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        td {
+            padding: 13px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        td:first-child {
+            text-align: left;
+            font-weight: 700;
+        }
+
+        tr:hover td {
+            background: #f8fafc;
+        }
+
+
+        /* ================================
+           CHART
+        ================================= */
+
+        .chart-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .chart-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .chart-description {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 380px;
+        }
+
+
+        /* ================================
+           SCORE TARGET
+        ================================= */
+
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 25px 0;
+        }
+
+        .score-card {
+            border-radius: 17px;
+            padding: 23px;
+            border: 1px solid #e5e7eb;
+            background: #fafafa;
+        }
+
+        .score-card h3 {
+            margin-top: 0;
+            color: #111827;
+        }
+
+        .score {
+            font-size: 29px;
+            font-weight: 800;
+            color: #2563eb;
+            margin: 8px 0;
+        }
+
+        .score-card p {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+
+        /* ================================
+           FORMULA
+        ================================= */
+
+        .formula-box {
+            background: #111827;
+            color: #ffffff;
+            padding: 25px;
+            border-radius: 16px;
+            margin: 25px 0;
+            text-align: center;
+            font-size: 20px;
+        }
+
+
+        /* ================================
+           FAQ
+        ================================= */
+
+        .faq {
+            margin-top: 20px;
+        }
+
+        details {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            padding: 17px 20px;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        details p {
+            margin-top: 12px;
+            margin-bottom: 0;
+        }
+
+
+        /* ================================
+           CTA
+        ================================= */
+
+        .cta {
+            margin-top: 45px;
+            padding: 35px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            color: white;
+            margin: 0 0 10px;
+        }
+
+        .cta p {
+            color: #dbeafe;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 12px 23px;
+            background: white;
+            color: #1d4ed8;
+            border-radius: 10px;
+            font-weight: 800;
+        }
+
+
+        /* ================================
+           SOURCE
+        ================================= */
+
+        .source-box {
+            margin-top: 35px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 35px 0;
+            margin-top: 30px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media(max-width: 800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 55px 0 65px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .stats-grid,
+            .score-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article {
+                padding: 25px 0;
+            }
+
+            .article-content {
+                border-radius: 15px;
+                padding: 25px 20px;
+            }
+
+            .article h2 {
+                font-size: 25px;
+            }
+
+            .chart-container {
+                height: 300px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<!-- ================================
+     NAVBAR
+================================= -->
+
+<nav class="navbar">
+
+    <div class="container nav-inner">
+
+        <a href="../index.html" class="logo">
+            CUET <span>Fiziks Prep</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../notes.html">Notes</a>
+            <a href="../pyqs.html">PYQs</a>
+            <a href="../courses.html">Courses</a>
+            <a href="../blog.html">Blog</a>
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ================================
+     HERO
+================================= -->
+
+<header class="hero">
+
+    <div class="container hero-content">
+
+        <span class="tag">CSIR NET PHYSICAL SCIENCES</span>
+
+        <h1>
+            CSIR NET Physics Cutoff:
+            Previous Years' Trend
+        </h1>
+
+        <p>
+            Previous-year Physical Sciences cutoff, category-wise
+            comparison, JRF trend and a practical score target
+            for CSIR NET aspirants.
+        </p>
+
+    </div>
+
+</header>
+
+
+<!-- ================================
+     ARTICLE
+================================= -->
+
+<main class="article">
+
+<div class="container">
+
+<div class="article-content">
+
+
+<!-- INTRO -->
+
+<h2>How Much Score Is Required for CSIR NET Physics?</h2>
+
+<p>
+If you are preparing for CSIR NET Physical Sciences, one of the
+most important questions is:
+<strong>How much score is required to qualify?</strong>
+</p>
+
+<p>
+The cutoff is not fixed. It changes from one examination cycle
+to another depending on factors such as paper difficulty,
+candidate performance and competition.
+</p>
+
+<div class="highlight">
+
+<strong>Important:</strong>
+Do not prepare only for the previous year's cutoff.
+Use the cutoff as a benchmark and aim for a comfortable margin
+above it.
+
+</div>
+
+
+<!-- QUICK STATS -->
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+
+        <div class="stat-number">46.125%</div>
+
+        <div class="stat-title">
+            Dec 2025 UR JRF
+        </div>
+
+        <div class="stat-sub">
+            Physical Sciences
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-number">51.188%</div>
+
+        <div class="stat-title">
+            June 2025 UR JRF
+        </div>
+
+        <div class="stat-sub">
+            Physical Sciences
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-number">54.188%</div>
+
+        <div class="stat-title">
+            Dec 2024 UR JRF
+        </div>
+
+        <div class="stat-sub">
+            Physical Sciences
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TREND -->
+
+<h2>CSIR NET Physics JRF Cutoff Trend</h2>
+
+<p>
+The recent UR-category JRF cutoff for Physical Sciences has
+shown considerable variation across examination cycles.
+</p>
+
+
+<div class="chart-card">
+
+    <div class="chart-title">
+        Physical Sciences — UR JRF Cutoff
+    </div>
+
+    <div class="chart-description">
+        Official cutoff percentage for recent CSIR NET examination cycles.
+    </div>
+
+    <div class="chart-container">
+        <canvas id="cutoffChart"></canvas>
+    </div>
+
+</div>
+
+
+<!-- TREND TABLE -->
+
+<h2>Previous Years' Physical Sciences Cutoff</h2>
+
+<p>
+The following table compares the UR-category cutoff for
+JRF and Assistant Professor eligibility.
+</p>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+    <th>Examination</th>
+    <th>UR JRF</th>
+    <th>UR Assistant Professor</th>
+    <th>UR PhD Only</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+    <td>June 2024</td>
+    <td>43.813%</td>
+    <td>39.432%</td>
+    <td>—</td>
+</tr>
+
+<tr>
+    <td>December 2024</td>
+    <td>54.188%</td>
+    <td>48.769%</td>
+    <td>37.563%</td>
+</tr>
+
+<tr>
+    <td>June 2025</td>
+    <td>51.188%</td>
+    <td>46.069%</td>
+    <td>36.500%</td>
+</tr>
+
+<tr>
+    <td>December 2025</td>
+    <td>46.125%</td>
+    <td>41.513%</td>
+    <td>33.000%</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<!-- LATEST CATEGORY -->
+
+<h2>December 2025 CSIR NET Physics Cutoff</h2>
+
+<p>
+The latest December 2025 official cutoff for Physical Sciences
+was as follows:
+</p>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+    <th>Category</th>
+    <th>JRF</th>
+    <th>Assistant Professor</th>
+    <th>PhD Only</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+    <td>UR</td>
+    <td>46.125%</td>
+    <td>41.513%</td>
+    <td>33.000%</td>
+</tr>
+
+<tr>
+    <td>EWS</td>
+    <td>39.063%</td>
+    <td>35.157%</td>
+    <td>33.000%</td>
+</tr>
+
+<tr>
+    <td>OBC-NCL</td>
+    <td>37.938%</td>
+    <td>34.144%</td>
+    <td>33.000%</td>
+</tr>
+
+<tr>
+    <td>SC</td>
+    <td>28.688%</td>
+    <td>25.819%</td>
+    <td>25.000%</td>
+</tr>
+
+<tr>
+    <td>ST</td>
+    <td>25.250%</td>
+    <td>25.000%</td>
+    <td>26.125%</td>
+</tr>
+
+<tr>
+    <td>PwD</td>
+    <td>25.000%</td>
+    <td>25.000%</td>
+    <td>25.000%</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<!-- MARKS CONVERSION -->
+
+<h2>What Does the Percentage Mean in Marks?</h2>
+
+<p>
+The Physical Sciences examination has a maximum of
+<strong>200 marks</strong>.
+Therefore:
+</p>
+
+<div class="formula-box">
+
+    Marks = Percentage × 2
+
+</div>
+
+<p>
+For example, a 46.125% cutoff corresponds to approximately
+<strong>92.25 marks out of 200</strong>.
+</p>
+
+<p>
+However, candidates should remember that the official cutoff
+is expressed as a percentage and that the actual examination
+contains negative marking.
+</p>
+
+
+<!-- SAFE SCORE -->
+
+<h2>What Is a Good Score for CSIR NET Physics JRF?</h2>
+
+<p>
+There is no officially declared "safe score". A useful
+preparation target is to aim considerably above the previous
+cutoff.
+</p>
+
+
+<div class="score-grid">
+
+    <div class="score-card">
+
+        <h3>50%+</h3>
+
+        <div class="score">
+            100+
+        </div>
+
+        <p>
+            Competitive preparation range.
+        </p>
+
+    </div>
+
+
+    <div class="score-card">
+
+        <h3>55%+</h3>
+
+        <div class="score">
+            110+
+        </div>
+
+        <p>
+            Strong JRF-oriented target.
+        </p>
+
+    </div>
+
+
+    <div class="score-card">
+
+        <h3>60%+</h3>
+
+        <div class="score">
+            120+
+        </div>
+
+        <p>
+            Excellent mock-test target.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="highlight">
+
+<strong>Our preparation target:</strong>
+For a serious JRF aspirant, consistently reaching
+<strong>55–60%+</strong> in full-length mock tests gives
+you a much better margin than preparing around the historical
+cutoff alone.
+
+</div>
+
+
+<!-- WHY CUTOFF CHANGES -->
+
+<h2>Why Does the CSIR NET Physics Cutoff Change?</h2>
+
+<h3>1. Difficulty of the paper</h3>
+
+<p>
+A difficult paper can lead to lower overall scores and therefore
+a lower cutoff.
+</p>
+
+
+<h3>2. Candidate performance</h3>
+
+<p>
+If a large number of candidates perform strongly, competition
+for JRF positions increases.
+</p>
+
+
+<h3>3. Examination cycle</h3>
+
+<p>
+June and December examinations can differ significantly in
+difficulty and candidate performance.
+</p>
+
+
+<h3>4. Competition for JRF</h3>
+
+<p>
+The JRF cutoff is generally higher than the Assistant Professor
+and PhD-only eligibility thresholds.
+</p>
+
+
+<!-- IMPORTANT NOTE -->
+
+<h2>Minimum Benchmark vs Actual Cutoff</h2>
+
+<p>
+Do not confuse the minimum benchmark with the final subject
+cutoff.
+</p>
+
+<div class="highlight">
+
+<strong>Minimum benchmark:</strong><br><br>
+
+33% for General, EWS and OBC categories<br>
+25% for SC, ST and PwD categories
+
+</div>
+
+<p>
+The minimum benchmark does not mean that scoring 33% guarantees
+JRF qualification. The actual Physical Sciences cutoff can be
+substantially higher.
+</p>
+
+
+<!-- PART A B C -->
+
+<h2>Is There a Separate Cutoff for Part A, B and C?</h2>
+
+<p>
+<strong>No.</strong>
+CSIR-HRDG states that there is no separate cutoff for
+Parts A, B and C. The cumulative marks from all parts are
+considered for drawing the merit list.
+</p>
+
+
+<!-- STRATEGY -->
+
+<h2>How Should You Use Previous-Year Cutoffs?</h2>
+
+<p>
+Previous-year cutoff data should be used as a planning tool,
+not as your final preparation target.
+</p>
+
+<ul>
+
+<li>Analyse CSIR NET Physics PYQs.</li>
+
+<li>Take regular full-length mock tests.</li>
+
+<li>Track your score percentage.</li>
+
+<li>Identify calculation and conceptual mistakes.</li>
+
+<li>Improve accuracy before increasing attempts.</li>
+
+<li>Try to maintain a score comfortably above the historical cutoff range.</li>
+
+</ul>
+
+
+<h2>Final Takeaway</h2>
+
+<p>
+The recent Physical Sciences cutoff demonstrates why it is
+risky to target one fixed number.
+</p>
+
+<p>
+The UR JRF cutoff was <strong>54.188%</strong> in December 2024,
+<strong>51.188%</strong> in June 2025 and
+<strong>46.125%</strong> in December 2025.
+</p>
+
+<p>
+Therefore, instead of preparing for a particular cutoff,
+build your preparation around a stronger target.
+</p>
+
+<div class="highlight">
+
+<strong>For JRF aspirants:</strong>
+
+Aim for approximately <strong>55–60%+</strong> in your
+full-length mock tests as a preparation benchmark.
+
+This is a recommended preparation target, not an official
+prediction or guarantee of qualification.
+
+</div>
+
+
+<!-- FAQ -->
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq">
+
+<details>
+
+<summary>
+What was the CSIR NET Physics JRF cutoff in December 2025?
+</summary>
+
+<p>
+The UR JRF cutoff for Physical Sciences was
+<strong>46.125%</strong>.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+What was the CSIR NET Physics JRF cutoff in June 2025?
+</summary>
+
+<p>
+The UR JRF cutoff for Physical Sciences was
+<strong>51.188%</strong>.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+Is 50% enough for CSIR NET Physics JRF?
+</summary>
+
+<p>
+It can be competitive, but there is no guaranteed score.
+The cutoff changes from one examination cycle to another.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+What score should I target for CSIR NET Physics JRF?
+</summary>
+
+<p>
+As a preparation benchmark, aiming for
+<strong>55–60% or higher</strong> in mock tests provides
+a healthier margin than targeting the previous cutoff.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+Is there a separate cutoff for Part A, B and C?
+</summary>
+
+<p>
+No. CSIR-HRDG states that cumulative marks from all parts
+are considered for the merit list.
+</p>
+
+</details>
+
+</div>
+
+
+<!-- CTA -->
+
+<div class="cta">
+
+<h2>Preparing for CSIR NET Physics?</h2>
+
+<p>
+Practice previous-year questions, revise important concepts
+and track your mock-test performance.
+</p>
+
+<a href="../pyqs.html" class="cta-btn">
+    Explore Physics PYQs →
+</a>
+
+</div>
+
+
+<!-- SOURCE -->
+
+<div class="source-box">
+
+<strong>Data source:</strong>
+Official CSIR-HRDG cutoff/result documents for Joint
+CSIR-UGC NET Physical Sciences.
+
+<br><br>
+
+Cutoff data should always be verified against the latest
+official CSIR-HRDG notification before making examination
+decisions.
+
+</div>
+
+
+</div>
+
+</div>
+
+</main>
+
+
+<!-- ================================
+     FOOTER
+================================= -->
+
+<footer>
+
+<div class="container footer-inner">
+
+    <div>
+        <strong>CUET Fiziks Prep</strong>
+        <br>
+        Physics resources for serious aspirants.
+    </div>
+
+    <div>
+        CSIR NET • CUET • GATE • Physics
+    </div>
+
+</div>
+
+</footer>
+
+
+<!-- ================================
+     CHART JS
+================================= -->
+
+<script>
+
+const ctx = document.getElementById('cutoffChart');
+
+new Chart(ctx, {
+
+    type: 'line',
+
+    data: {
+
+        labels: [
+            'June 2024',
+            'December 2024',
+            'June 2025',
+            'December 2025'
+        ],
+
+        datasets: [{
+
+            label: 'UR JRF Cutoff (%)',
+
+            data: [
+                43.813,
+                54.188,
+                51.188,
+                46.125
+            ],
+
+            borderWidth: 3,
+
+            tension: 0.35,
+
+            pointRadius: 5,
+
+            pointHoverRadius: 7,
+
+            fill: false
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        maintainAspectRatio: false,
+
+        plugins: {
+
+            legend: {
+                display: true
+            },
+
+            tooltip: {
+
+                callbacks: {
+
+                    label: function(context) {
+
+                        return ' Cutoff: '
+                            + context.raw
+                            + '%';
+
+                    }
+
+                }
+
+            }
+
+        },
+
+        scales: {
+
+            y: {
+
+                beginAtZero: false,
+
+                min: 40,
+
+                max: 60,
+
+                title: {
+
+                    display: true,
+
+                    text: 'Cutoff Percentage'
+
+                }
+
+            },
+
+            x: {
+
+                title: {
+
+                    display: true,
+
+                    text: 'Examination'
+
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+
+</body>
+</html>
